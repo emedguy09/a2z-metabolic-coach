@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>A2Z Metabolic Coach</title>
+<meta name="description" content="A2Z Weight Loss & Wellness metabolic health check-in and progress tracker." />
+<meta name="theme-color" content="#0f766e" />
+<style>
+  :root{--bg:#f6faf9;--card:#ffffff;--ink:#0f172a;--muted:#64748b;--brand:#0f766e;--brand2:#14b8a6;--danger:#dc2626;--line:#dbe7e5;--soft:#e8f7f5;--gold:#f59e0b}
+  *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+  header{padding:24px 18px 18px;background:linear-gradient(135deg,var(--brand),#134e4a);color:white}
+  header h1{margin:0;font-size:28px;line-height:1.1} header p{margin:8px 0 0;color:#d9fffb;font-size:15px}
+  main{max-width:920px;margin:0 auto;padding:16px 14px 80px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:14px 0;box-shadow:0 8px 24px rgba(15,23,42,.05)}
+  h2{font-size:21px;margin:0 0 8px} h3{font-size:17px;margin:14px 0 8px}.small{font-size:13px;color:var(--muted);line-height:1.35}.grid{display:grid;grid-template-columns:1fr;gap:10px}@media(min-width:760px){.grid.two{grid-template-columns:1fr 1fr}.grid.three{grid-template-columns:1fr 1fr 1fr}}
+  label{font-weight:650;font-size:14px;margin-bottom:5px;display:block} input,select,textarea{width:100%;font-size:16px;padding:12px;border:1px solid #cbd5e1;border-radius:12px;background:#fff;color:var(--ink)} textarea{min-height:88px;resize:vertical}.row{display:flex;gap:10px;align-items:center}.row>*{flex:1}
+  button,.btn{border:0;border-radius:14px;padding:13px 14px;font-weight:750;font-size:15px;background:var(--brand);color:#fff;cursor:pointer;text-align:center;text-decoration:none;display:inline-block} button.secondary{background:#e2e8f0;color:#0f172a} button.danger{background:var(--danger)} button.ghost{background:#fff;color:var(--brand);border:1px solid var(--brand)}
+  .tabs{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;z-index:10}.tab{flex:1;padding:10px 4px;font-size:12px;color:var(--muted);text-align:center}.tab.active{color:var(--brand);font-weight:800;background:var(--soft)}
+  .hidden{display:none}.pill{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:var(--soft);color:#134e4a;font-weight:700;font-size:13px;margin:4px 4px 4px 0}.score{font-size:46px;font-weight:900;color:var(--brand);line-height:1}.metric{padding:12px;border:1px solid var(--line);border-radius:14px;background:#fbfefd}.metric b{display:block;font-size:22px}.progressbar{height:12px;background:#e2e8f0;border-radius:999px;overflow:hidden}.progressbar span{display:block;height:100%;background:linear-gradient(90deg,var(--brand),var(--brand2));width:0%} table{width:100%;border-collapse:collapse;font-size:14px} th,td{border-bottom:1px solid var(--line);padding:9px 6px;text-align:left} th{color:var(--muted);font-size:12px;text-transform:uppercase}.notice{padding:12px;border-radius:14px;background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12}.success{padding:12px;border-radius:14px;background:#ecfdf5;border:1px solid #a7f3d0;color:#064e3b}.logo{font-weight:900;letter-spacing:.04em;font-size:13px;color:#ccfbf1}.footer-note{font-size:12px;color:var(--muted);line-height:1.35;margin-top:18px}.linkish{color:var(--brand);font-weight:800;text-decoration:underline;cursor:pointer}.checkline{display:flex;gap:8px;align-items:flex-start;margin:8px 0}.checkline input{width:auto;margin-top:3px}.chart{height:170px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(#fff,#fbfefd);padding:8px}.cta{background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff}.cta .small{color:#e6fffb}.cta button{background:#fff;color:#0f766e}.badge{background:#083f3c;color:#ccfbf1;padding:3px 8px;border-radius:999px;font-size:12px;font-weight:800}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">A2Z WEIGHT LOSS & WELLNESS</div>
+  <h1>A2Z Metabolic Coach</h1>
+  <p>Track progress, build habits, and stay accountable with physician-guided metabolic health coaching.</p>
+</header>
+<main>
+  <section id="lead" class="card cta">
+    <span class="badge">FREE ASSESSMENT</span>
+    <h2 style="margin-top:10px">Find out where your weight-loss plan is getting stuck.</h2>
+    <p class="small">Complete your A2Z Metabolic Health Score and save your progress tracker. Your information stays on this device unless you choose to send it to A2Z.</p>
+    <div class="grid two">
+      <div><label>First name</label><input id="name" placeholder="First name"></div>
+      <div><label>Email</label><input id="email" type="email" placeholder="you@email.com"></div>
+      <div><label>Phone</label><input id="phone" type="tel" placeholder="Optional"></div>
+      <div><label>Age</label><input id="age" type="number" placeholder="Optional"></div>
+    </div>
+    <div style="margin-top:12px"><button onclick="saveProfile();showTab('score')">Start My Assessment</button></div>
+  </section>
+
+  <section id="tab-score" class="screen">
+    <div class="card">
+      <h2>Metabolic Health Score</h2>
+      <p class="small">This is a simple readiness and habit score, not a diagnosis. It helps identify where coaching may help most.</p>
+      <div class="grid two">
+        <div><label>Current weight</label><input id="currentWeight" type="number" placeholder="lbs"></div>
+        <div><label>Goal weight</label><input id="goalWeight" type="number" placeholder="lbs"></div>
+        <div><label>Protein most days</label><select id="protein"><option value="0">Less than 60g/day</option><option value="1">60-99g/day</option><option value="2">100-149g/day</option><option value="3">150g+/day</option></select></div>
+        <div><label>Exercise</label><select id="exercise"><option value="0">Rarely</option><option value="1">1-2 days/week</option><option value="2">3-4 days/week</option><option value="3">5+ days/week</option></select></div>
+        <div><label>Sleep quality</label><select id="sleep"><option value="0">Poor</option><option value="1">Fair</option><option value="2">Good</option><option value="3">Excellent</option></select></div>
+        <div><label>Food noise / cravings</label><select id="cravings"><option value="0">Severe</option><option value="1">Moderate</option><option value="2">Mild</option><option value="3">Minimal</option></select></div>
+      </div>
+      <h3>Health background</h3>
+      <div class="checkline"><input id="bp" type="checkbox"><label for="bp">High blood pressure or medication</label></div>
+      <div class="checkline"><input id="dm" type="checkbox"><label for="dm">Diabetes, prediabetes, or insulin resistance</label></div>
+      <div class="checkline"><input id="chol" type="checkbox"><label for="chol">High cholesterol or triglycerides</label></div>
+      <div class="checkline"><input id="prior" type="checkbox"><label for="prior">Lost weight before but regained it</label></div>
+      <div style="margin-top:12px" class="row"><button onclick="calculateScore()">Calculate My Score</button><button class="secondary" onclick="exportLead()">Send / Export Info</button></div>
+    </div>
+    <div id="scoreResult" class="card hidden"></div>
+  </section>
+
+  <section id="tab-today" class="screen hidden">
+    <div class="card">
+      <h2>Daily Check-In</h2>
+      <div class="grid two">
+        <div><label>Today's weight</label><input id="todayWeight" type="number" placeholder="lbs"></div>
+        <div><label>Protein today</label><input id="todayProtein" type="number" placeholder="grams"></div>
+        <div><label>Water</label><input id="todayWater" type="number" placeholder="ounces"></div>
+        <div><label>Sleep</label><input id="todaySleep" type="number" step="0.5" placeholder="hours"></div>
+        <div><label>Hunger 1-10</label><input id="hunger" type="number" min="1" max="10" placeholder="1-10"></div>
+        <div><label>Energy 1-10</label><input id="energy" type="number" min="1" max="10" placeholder="1-10"></div>
+      </div>
+      <div class="checkline"><input id="workout" type="checkbox"><label for="workout">Exercise completed today</label></div>
+      <label>Biggest win today</label><textarea id="win" placeholder="What went well?"></textarea>
+      <label>Biggest challenge today</label><textarea id="challenge" placeholder="What got in the way?"></textarea>
+      <button onclick="saveCheckin()">Save Today's Check-In</button>
+    </div>
+  </section>
+
+  <section id="tab-progress" class="screen hidden">
+    <div class="card">
+      <h2>Progress Dashboard</h2>
+      <div class="grid three">
+        <div class="metric"><span class="small">Starting</span><b id="startWt">—</b></div>
+        <div class="metric"><span class="small">Latest</span><b id="latestWt">—</b></div>
+        <div class="metric"><span class="small">Change</span><b id="changeWt">—</b></div>
+      </div>
+      <h3>Weight Progress</h3>
+      <div class="progressbar"><span id="goalBar"></span></div>
+      <p id="goalText" class="small"></p>
+      <h3>Recent Check-Ins</h3>
+      <div id="history"></div>
+      <div class="row" style="margin-top:12px"><button class="secondary" onclick="downloadCSV()">Download CSV</button><button class="danger" onclick="resetAll()">Reset</button></div>
+    </div>
+  </section>
+
+  <section id="tab-coach" class="screen hidden">
+    <div class="card">
+      <h2>Weekly Coaching Reflection</h2>
+      <label>This week's biggest win</label><textarea id="weekWin"></textarea>
+      <label>This week's biggest obstacle</label><textarea id="weekObstacle"></textarea>
+      <label>One behavior I will focus on next week</label><textarea id="weekFocus"></textarea>
+      <label>What support would help?</label><textarea id="weekSupport"></textarea>
+      <button onclick="saveWeekly()">Save Weekly Reflection</button>
+    </div>
+    <div class="card">
+      <h2>Talk With A2Z</h2>
+      <p class="small">When you're ready, export your assessment and check-ins and send them to A2Z Weight Loss & Wellness.</p>
+      <a class="btn" id="emailA2Z" href="#">Email My Summary</a>
+    </div>
+  </section>
+
+  <p class="footer-note">Educational tool only. This does not provide medical advice, diagnose disease, or replace care from a licensed clinician. For chest pain, shortness of breath, severe abdominal pain, fainting, or other urgent symptoms, seek emergency care.</p>
+</main>
+<nav class="tabs">
+  <div class="tab active" onclick="showTab('score')">Score</div>
+  <div class="tab" onclick="showTab('today')">Today</div>
+  <div class="tab" onclick="showTab('progress')">Progress</div>
+  <div class="tab" onclick="showTab('coach')">Coach</div>
+</nav>
+<script>
+const KEY='a2z_metabolic_coach_v1';
+const A2Z_EMAIL='a2zwwllc@gmail.com';
+function data(){return JSON.parse(localStorage.getItem(KEY)||'{"profile":{},"checkins":[],"weekly":[]}')}
+function save(d){localStorage.setItem(KEY,JSON.stringify(d));updateDashboard();updateEmailLink()}
+function val(id){return document.getElementById(id).value}
+function num(id){return parseFloat(val(id))||0}
+function saveProfile(){let d=data();d.profile={...d.profile,name:val('name'),email:val('email'),phone:val('phone'),age:val('age')};save(d)}
+function showTab(t){document.querySelectorAll('.screen').forEach(x=>x.classList.add('hidden'));document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.getElementById('tab-'+t).classList.remove('hidden');['score','today','progress','coach'].forEach((n,i)=>{if(n===t)document.querySelectorAll('.tab')[i].classList.add('active')});updateDashboard()}
+function calculateScore(){saveProfile();let habit=(+val('protein')+(+val('exercise'))+(+val('sleep'))+(+val('cravings')));let risks=['bp','dm','chol','prior'].filter(id=>document.getElementById(id).checked).length;let cw=num('currentWeight'),gw=num('goalWeight');let goalPenalty=(cw&&gw&&cw>gw)?Math.min(15,Math.round(((cw-gw)/cw)*100)):0;let score=Math.max(0,Math.min(100,45+habit*5-risks*4-goalPenalty));let d=data();d.assessment={date:new Date().toISOString(),currentWeight:cw,goalWeight:gw,protein:val('protein'),exercise:val('exercise'),sleep:val('sleep'),cravings:val('cravings'),risks,score};save(d);let level=score>=75?'Strong foundation':score>=55?'Good candidate for structured coaching':'High opportunity for support';document.getElementById('scoreResult').classList.remove('hidden');document.getElementById('scoreResult').innerHTML=`<h2>Your Score</h2><div class="score">${score}/100</div><p><b>${level}</b></p><p class="small">Your next step is to track daily habits for 7 days. Focus first on protein, hydration, resistance training, sleep, and reducing all-or-nothing thinking.</p><div class="notice"><b>Suggested next step:</b> Schedule a free physician-guided review with A2Z to discuss whether the metabolic program is appropriate for you.</div>`}
+function saveCheckin(){let d=data();d.checkins.unshift({date:new Date().toLocaleDateString(),iso:new Date().toISOString(),weight:num('todayWeight'),protein:num('todayProtein'),water:num('todayWater'),sleep:num('todaySleep'),hunger:num('hunger'),energy:num('energy'),workout:document.getElementById('workout').checked,win:val('win'),challenge:val('challenge')});save(d);['todayWeight','todayProtein','todayWater','todaySleep','hunger','energy','win','challenge'].forEach(id=>document.getElementById(id).value='');document.getElementById('workout').checked=false;alert('Check-in saved.')}
+function saveWeekly(){let d=data();d.weekly.unshift({date:new Date().toLocaleDateString(),win:val('weekWin'),obstacle:val('weekObstacle'),focus:val('weekFocus'),support:val('weekSupport')});save(d);['weekWin','weekObstacle','weekFocus','weekSupport'].forEach(id=>document.getElementById(id).value='');alert('Weekly reflection saved.')}
+function updateDashboard(){let d=data(), c=d.checkins||[], a=d.assessment||{};let weights=c.map(x=>x.weight).filter(Boolean);let start=a.currentWeight||weights[weights.length-1]||0;let latest=weights[0]||start||0;let goal=a.goalWeight||0;document.getElementById('startWt').textContent=start?start+' lb':'—';document.getElementById('latestWt').textContent=latest?latest+' lb':'—';let change=latest&&start?(latest-start).toFixed(1):0;document.getElementById('changeWt').textContent=latest&&start?change+' lb':'—';let pct=0;if(start&&goal&&latest&&start>goal)pct=Math.max(0,Math.min(100,((start-latest)/(start-goal))*100));document.getElementById('goalBar').style.width=pct+'%';document.getElementById('goalText').textContent=goal?`${Math.round(pct)}% of the way toward your goal weight of ${goal} lb.`:'Enter a goal weight in the score section to track progress.';document.getElementById('history').innerHTML=c.length?`<table><tr><th>Date</th><th>Wt</th><th>Protein</th><th>Water</th><th>Sleep</th></tr>${c.slice(0,10).map(x=>`<tr><td>${x.date}</td><td>${x.weight||''}</td><td>${x.protein||''}g</td><td>${x.water||''}oz</td><td>${x.sleep||''}h</td></tr>`).join('')}</table>`:'<p class="small">No check-ins saved yet.</p>'}
+function summary(){let d=data();return `A2Z Metabolic Coach Summary\n\nName: ${d.profile.name||''}\nEmail: ${d.profile.email||''}\nPhone: ${d.profile.phone||''}\nAge: ${d.profile.age||''}\nScore: ${d.assessment?.score||''}/100\nCurrent Weight: ${d.assessment?.currentWeight||''}\nGoal Weight: ${d.assessment?.goalWeight||''}\n\nRecent Check-ins:\n${(d.checkins||[]).slice(0,7).map(x=>`${x.date}: wt ${x.weight||''}, protein ${x.protein||''}g, water ${x.water||''}oz, sleep ${x.sleep||''}h, hunger ${x.hunger||''}/10, energy ${x.energy||''}/10, exercise ${x.workout?'yes':'no'}`).join('\n')}`}
+function updateEmailLink(){let s=encodeURIComponent(summary());document.getElementById('emailA2Z').href=`mailto:${A2Z_EMAIL}?subject=A2Z Metabolic Coach Summary&body=${s}`}
+function exportLead(){saveProfile();navigator.clipboard?.writeText(summary());alert('Summary copied. You can paste it into a text or email to A2Z.')}
+function downloadCSV(){let d=data(),rows=['date,weight,protein,water,sleep,hunger,energy,workout,win,challenge'];(d.checkins||[]).forEach(x=>rows.push([x.date,x.weight,x.protein,x.water,x.sleep,x.hunger,x.energy,x.workout?'yes':'no',`"${(x.win||'').replaceAll('"','""')}"`,`"${(x.challenge||'').replaceAll('"','""')}"`].join(',')));let blob=new Blob([rows.join('\n')],{type:'text/csv'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='a2z_metabolic_checkins.csv';a.click();URL.revokeObjectURL(url)}
+function resetAll(){if(confirm('Delete all saved A2Z Metabolic Coach data on this device?')){localStorage.removeItem(KEY);location.reload()}}
+(function init(){let d=data();['name','email','phone','age'].forEach(id=>{if(d.profile[id])document.getElementById(id).value=d.profile[id]});updateDashboard();updateEmailLink()})();
+</script>
+</body>
+</html>
